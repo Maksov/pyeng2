@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
 Задание 5.2
 
@@ -30,3 +30,29 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+netmask = input('Введите IP-сеть в формате "10.1.1.0/24": ')
+nm_list = netmask.split('/')
+oct = nm_list[0].split('.')
+oct1=int(oct[0])
+oct2=int(oct[1])
+oct3=int(oct[2])
+oct4=int(oct[3])
+prefix = int(nm_list[-1])
+mask2b = "1" * prefix + "0" * (32-prefix)
+moct1 = int(mask2b[0:8], 2)
+moct2 = int(mask2b[8:16], 2)
+moct3 = int(mask2b[16:24], 2)
+moct4 = int(mask2b[24:32], 2)
+template = '''
+Network:
+{0:<9}{1:<9}{2:<9}{3:<9}
+{0:08b} {1:08b} {2:08b} {3:08b}
+
+Mask:
+/{4}
+{5:<9}{6:<9}{7:<9}{8:<9}
+{5:08b} {6:08b} {7:08b} {8:08b}
+'''
+
+print(template.format(oct1,oct2,oct3,oct4,prefix,moct1,moct2,moct3,moct4))
