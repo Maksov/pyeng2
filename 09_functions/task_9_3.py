@@ -23,3 +23,24 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+def get_int_vlan_map(cnfg):
+    cfg_access_dict = {}
+    cfg_trunk_dict = {}
+    with open(cnfg, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if line and 'FastEthernet' in line:
+                intf = line[10:]
+            elif line.startswith('switchport access vlan'):
+                cfg_access_dict[intf] = int(line.split()[-1])
+            elif line.startswith('switchport trunk allowed vlan'):
+                vlans = line.split()[-1]
+                vls = [int(vl) for vl in vlans.split(',')]
+                cfg_trunk_dict[intf] = vls
+    return (cfg_access_dict, cfg_trunk_dict)
+
+print(get_int_vlan_map('config_sw1.txt'))
+
+
+                
+

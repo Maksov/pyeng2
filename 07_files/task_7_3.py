@@ -20,3 +20,14 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+table_mac = list()
+with open('CAM_table.txt', 'r') as f:
+    for line in f:
+        str = line.split()
+        if str and str[0].isdigit():
+            vlan, mac, _, intrf = str
+            str_mac = list(vlan,mac,intrf)
+            table_mac.append(str)
+            #print(f"{vlan:<9} {mac:<20} {intrf}")
+            print(str_mac)
+

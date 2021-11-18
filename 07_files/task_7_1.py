@@ -14,13 +14,7 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
-"""
-info = ospf_route.split(',')
-ip = info[0].lstrip().split(' ')
-ip.extend(info[1:])
-ip.remove('via')
-ip[1] = ip[1].strip('[').strip(']')
-"""
+
 ospf_route_info='''
 Prefix              {}
 AD/Metric           {}
